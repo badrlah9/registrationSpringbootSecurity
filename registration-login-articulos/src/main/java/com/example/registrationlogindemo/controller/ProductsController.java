@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -48,7 +49,7 @@ public class ProductsController {
     }
 
 
-    // new method to create a new products and add it to the product list
+    // new method for displaying the page to allow users to create products
     @PostMapping("/create")
     public String createProduct(
             @Valid @ModelAttribute ProductDto productDto,
@@ -93,6 +94,32 @@ public class ProductsController {
         repo.save(product);
 
         return "redirect:/products";
+    }
+
+    // new method for displaying the page to allow users to update products
+    @GetMapping("/edit")
+    public String showEditPage(
+            Model model,
+            @RequestParam int id
+    ){
+        try{
+            Product product = repo.findById(id).get();
+            model.addAttribute("product", product);
+
+            ProductDto productDto = new ProductDto();
+            productDto.setName(product.getName());
+            productDto.setBrand(product.getBrand());
+            productDto.setCategory(product.getCategory());
+            productDto.setPrice(product.getPrice());
+            productDto.setCategory(product.getCategory());
+            model.addAttribute("productDto",productDto);
+
+        }catch(Exception ex){
+            System.out.println("Exception: " + ex.getMessage());
+            return "redirect:/products";
+        }
+
+        return "products/editProduct";
     }
 
 
