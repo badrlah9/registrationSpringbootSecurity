@@ -1,13 +1,13 @@
-package com.example.registrationlogindemo.entity;
+package com.example.registrationlogindemo.models;
 
 
 import jakarta.persistence.*;
-
+import org.springframework.ui.Model;
 import java.util.Date;
 
 @Entity
 @Table(name = "products")
-public class Products {
+public class Product {
 
     @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
