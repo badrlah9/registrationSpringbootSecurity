@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>FormArticulos</title>
+    <!-- Agrega el enlace a Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <h1 class="mt-5">Formulario de artículos</h1>
+
+    <form th:action="@{${articulo.id != null ? '/crud/articulos/modificar/submit' : '/crud/articulos/altas/submit'}}" th:method="post" enctype="multipart/form-data" th:object="${articulo}" class="mt-4">
+        <div class="form-group">
+            <label for="id">Id</label>
+            <input type="number" class="form-control" id="id" name="id" th:field="*{id}" disabled>
+        </div>
+        <div class="form-group">
+            <label for="titulo">Titulo</label>
+            <input type="text" class="form-control" id="titulo" name="titulo" th:field="*{titulo}">
+        </div>
+        <div class="form-group">
+            <label for="contenido">Contenido</label>
+            <textarea class="form-control" id="contenido" name="contenido" rows="10" th:field="*{contenido}"></textarea>
+        </div>
+        <!--<div class="form-group">
+            <label for="imagen">Imagen</label>
+            <input type="file" class="form-control" id="imagen" name="imagen">
+        </div>-->
+        <div class="form-group">
+            <label for="categoria">Categoria</label>
+            <input type="text" class="form-control" id="categoria" th:field="*{categoria}">
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+
+</body>
+</html>
