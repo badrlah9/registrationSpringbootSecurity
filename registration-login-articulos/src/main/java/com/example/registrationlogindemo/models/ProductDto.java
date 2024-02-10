@@ -4,6 +4,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.*;
 import jakarta.validation.constraints.Size;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.ui.Model;
 
 public class ProductDto {
 
