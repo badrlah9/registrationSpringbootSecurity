@@ -37,6 +37,10 @@ public class SpringSecurity {
                                 .requestMatchers("/crud/articulos/modificar").authenticated()
                                 .requestMatchers("/crud/articulos/modificar/submit").authenticated()
                                 .requestMatchers("/users").hasRole("ADMIN")
+                                .requestMatchers("/create").authenticated()
+                                .requestMatchers("/edit").authenticated()
+                                .requestMatchers("","/").authenticated()
+
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")
